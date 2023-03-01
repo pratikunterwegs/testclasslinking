@@ -35,22 +35,21 @@ context("Sample unit tests") {
 
 }
 
-std::vector<int> v = testclasslinking::get_numbers(10);
-
 context("Custom multithreaded function") {
   
-  testclasslinking::testclass object(10, false);
+  const int samples = 10;
+  testclasslinking::testclass object(samples, false);
   object.init();
-
-  std::cout << "value = " << object.value[10] << "\n";
   
   test_that("generate numbers with TBB") {
     expect_true(1 == 1);
-    expect_true(object.value.size() == 10);
-    expect_true(object.value[10] == 9);
+    expect_true(object.value.size() == samples);
+    expect_true(object.value.back() == samples - 1);
   }
 
+  std::vector<int> v = testclasslinking::get_numbers_v(samples);
+
   test_that("generate numbers with vector") {
-    expect_true(v[10] == 9);
+    expect_true(v.back() == samples - 1);
   }
 }

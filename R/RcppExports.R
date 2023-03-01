@@ -5,3 +5,7 @@ get_numbers <- function(samples, multithreaded = FALSE) {
     .Call(`_testclasslinking_get_numbers`, samples, multithreaded)
 }
 
+get_numbers_vec <- function(samples) {
+    .Call(`_testclasslinking_get_numbers_vec`, samples)
+}
+

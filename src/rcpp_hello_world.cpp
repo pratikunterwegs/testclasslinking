@@ -13,3 +13,9 @@ Rcpp::IntegerVector get_numbers(const int &samples, const bool &multithreaded = 
 
     return Rcpp::wrap(object.value);
 }
+
+// [[Rcpp::export]]
+Rcpp::IntegerVector get_numbers_vec(const int &samples) {
+
+    return Rcpp::wrap(testclasslinking::get_numbers_v (samples));
+}
