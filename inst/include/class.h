@@ -6,6 +6,7 @@
 #include <Rcpp.h>
 #include <RcppParallel.h>
 #include <vector>
+#include <functional>
 
 namespace testclasslinking
 {
@@ -52,5 +53,28 @@ inline std::vector<int> get_numbers_v(const int &size) {
     return v;
 }
 } // namespace testclasslinking
+
+namespace helpers {
+
+inline std::vector<float> do_iterate(const int &samples) {
+  std::vector<float>tmp (samples, 0.f);
+  for(int i = 0; i < samples; i++) {
+    tmp[i] = static_cast<float>(i);
+  }
+  return tmp;
+}
+
+inline std::vector<float> invoke(
+  std::function<std::vector<float>(const int)> func,
+  const int &samples
+) {
+  return func(samples);
+}
+
+inline std::vector<float> get_numbers_functional(const int &samples) {
+  return invoke(&do_iterate, samples);
+}
+
+}
 
 #endif  // INST_INCLUDE_CLASS_H_

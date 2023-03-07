@@ -19,3 +19,8 @@ Rcpp::IntegerVector get_numbers_vec(const int &samples) {
 
     return Rcpp::wrap(testclasslinking::get_numbers_v (samples));
 }
+
+// [[Rcpp::export]]
+Rcpp::NumericVector get_numbers_func(const int &samples) {
+  return Rcpp::wrap(helpers::get_numbers_functional(samples));
+}
