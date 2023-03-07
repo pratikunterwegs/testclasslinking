@@ -9,7 +9,7 @@ get_numbers_vec <- function(samples) {
     .Call(`_testclasslinking_get_numbers_vec`, samples)
 }
 
-get_numbers_func <- function(samples) {
-    .Call(`_testclasslinking_get_numbers_func`, samples)
+get_numbers_func <- function(list) {
+    .Call(`_testclasslinking_get_numbers_func`, list)
 }
 

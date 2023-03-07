@@ -35,13 +35,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // get_numbers_func
-Rcpp::NumericVector get_numbers_func(const int& samples);
-RcppExport SEXP _testclasslinking_get_numbers_func(SEXP samplesSEXP) {
+Rcpp::NumericVector get_numbers_func(const Rcpp::List& list);
+RcppExport SEXP _testclasslinking_get_numbers_func(SEXP listSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const int& >::type samples(samplesSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_numbers_func(samples));
+    Rcpp::traits::input_parameter< const Rcpp::List& >::type list(listSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_numbers_func(list));
     return rcpp_result_gen;
 END_RCPP
 }

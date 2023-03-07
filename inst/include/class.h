@@ -56,7 +56,8 @@ inline std::vector<int> get_numbers_v(const int &size) {
 
 namespace helpers {
 
-inline std::vector<float> do_iterate(const int &samples) {
+inline std::vector<float> do_iterate(const Rcpp::List &list) {
+  const int samples = list.length();
   std::vector<float>tmp (samples, 0.f);
   for(int i = 0; i < samples; i++) {
     tmp[i] = static_cast<float>(i);
@@ -65,14 +66,14 @@ inline std::vector<float> do_iterate(const int &samples) {
 }
 
 inline std::vector<float> invoke(
-  std::function<std::vector<float>(const int)> func,
-  const int &samples
+  std::function<std::vector<float>(const Rcpp::List)> func,
+  const Rcpp::List &list
 ) {
-  return func(samples);
+  return func(list);
 }
 
-inline std::vector<float> get_numbers_functional(const int &samples) {
-  return invoke(&do_iterate, samples);
+inline std::vector<float> get_numbers_functional(const Rcpp::List &list) {
+  return invoke(&do_iterate, list);
 }
 
 }
