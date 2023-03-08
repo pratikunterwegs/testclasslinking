@@ -13,3 +13,7 @@ get_numbers_func <- function(list) {
     .Call(`_testclasslinking_get_numbers_func`, list)
 }
 
+get_double_matrix <- function(list) {
+    .Call(`_testclasslinking_get_double_matrix`, list)
+}
+

@@ -87,7 +87,28 @@ inline std::vector<float> invoke(
 inline std::vector<float> get_numbers_functional(const Rcpp::List &list) {
   return invoke(&do_iterate, list);
 }
-
 } // namespace helpers
+
+namespace matrixops {
+
+inline Eigen::MatrixXd double_matrix(const Rcpp::List &list) {
+  Eigen::Map<Eigen::MatrixXd> this_eigen_matrix(
+    Rcpp::as<Eigen::Map<Eigen::MatrixXd> >(list["matrix"])
+  );
+
+  return this_eigen_matrix + this_eigen_matrix;
+}
+
+inline Eigen::MatrixXd invoke_matrixop(
+  std::function<Eigen::MatrixXd(const Rcpp::List)> func,
+  const Rcpp::List &list
+) {
+  return func(list);
+}
+
+inline Eigen::MatrixXd get_double_matrix(const Rcpp::List &list) {
+  return invoke_matrixop(&double_matrix, list);
+}
+} // namespace matrixops
 
 #endif  // INST_INCLUDE_CLASS_H_

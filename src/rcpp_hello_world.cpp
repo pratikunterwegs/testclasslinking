@@ -1,7 +1,9 @@
 
 // [[Rcpp::depends(RcppParallel)]]
+// [[Rcpp::depends(RcppEigen)]]
 
 #include <Rcpp.h>
+#include <RcppEigen.h>
 #include <testclasslinking.h>
 
 // [[Rcpp::export]]
@@ -26,4 +28,12 @@ Rcpp::NumericVector get_numbers_func(const Rcpp::List &list) {
     Rcpp::stop("Error: List must have matrix element named 'matrix'\n");
   }
   return Rcpp::wrap(helpers::get_numbers_functional(list));
+}
+
+// [[Rcpp::export]]
+Eigen::MatrixXd get_double_matrix(const Rcpp::List &list) {
+  if (!list.containsElementNamed("matrix")) {
+    Rcpp::stop("Error: List must have matrix element named 'matrix'\n");
+  }
+  return matrixops::get_double_matrix(list);
 }
