@@ -22,5 +22,8 @@ Rcpp::IntegerVector get_numbers_vec(const int &samples) {
 
 // [[Rcpp::export]]
 Rcpp::NumericVector get_numbers_func(const Rcpp::List &list) {
+  if (!list.containsElementNamed("matrix")) {
+    Rcpp::stop("Error: List must have matrix element named 'matrix'\n");
+  }
   return Rcpp::wrap(helpers::get_numbers_functional(list));
 }

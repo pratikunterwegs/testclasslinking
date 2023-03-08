@@ -2,9 +2,11 @@
 #define INST_INCLUDE_CLASS_H_
 
 // [[Rcpp::depends(RcppParallel)]]
+// [[Rcpp::depends(RcppEigen)]]
 
 #include <Rcpp.h>
 #include <RcppParallel.h>
+#include <RcppEigen.h>
 #include <vector>
 #include <functional>
 
@@ -54,14 +56,24 @@ inline std::vector<int> get_numbers_v(const int &size) {
 }
 } // namespace testclasslinking
 
+/// @brief Helpers for functional usage.
 namespace helpers {
 
 inline std::vector<float> do_iterate(const Rcpp::List &list) {
   const int samples = list.length();
-  std::vector<float>tmp (samples, 0.f);
+  
+  // list must have matrix element named 'matrix'
+  // convert this element to an Eigen matrix
+  const Eigen::MatrixXd this_matrix = list["matrix"];
+  // count rows
+  const int nrow = this_matrix.rows();
+
+  std::vector<float>tmp (samples + nrow, 0.f);
+  
   for(int i = 0; i < samples; i++) {
     tmp[i] = static_cast<float>(i);
   }
+
   return tmp;
 }
 
@@ -76,6 +88,6 @@ inline std::vector<float> get_numbers_functional(const Rcpp::List &list) {
   return invoke(&do_iterate, list);
 }
 
-}
+} // namespace helpers
 
 #endif  // INST_INCLUDE_CLASS_H_
