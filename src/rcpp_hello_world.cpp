@@ -31,9 +31,10 @@ Rcpp::NumericVector get_numbers_func(const Rcpp::List &list) {
 }
 
 // [[Rcpp::export]]
-Eigen::MatrixXd get_double_matrix(const Rcpp::List &list) {
+Rcpp::List get_double_matrix(const Rcpp::List &list) {
   if (!list.containsElementNamed("matrix")) {
     Rcpp::stop("Error: List must have matrix element named 'matrix'\n");
   }
-  return matrixops::get_double_matrix(list);
+  matrixops::mod_matrix(list);
+  return list;
 }

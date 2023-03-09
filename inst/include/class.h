@@ -106,8 +106,8 @@ inline Eigen::MatrixXd invoke_matrixop(
   return func(list);
 }
 
-inline Eigen::MatrixXd get_double_matrix(const Rcpp::List &list) {
-  return invoke_matrixop(&double_matrix, list);
+inline void mod_matrix(const Rcpp::List &list) {
+  list["matrix"] = invoke_matrixop(&double_matrix, list);
 }
 } // namespace matrixops
 

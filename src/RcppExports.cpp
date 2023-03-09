@@ -47,7 +47,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // get_double_matrix
-Eigen::MatrixXd get_double_matrix(const Rcpp::List& list);
+Rcpp::List get_double_matrix(const Rcpp::List& list);
 RcppExport SEXP _testclasslinking_get_double_matrix(SEXP listSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
