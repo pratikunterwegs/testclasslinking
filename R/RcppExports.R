@@ -23,3 +23,9 @@ harmonic_oscillator <- function(init) {
     .Call(`_testclasslinking_harmonic_oscillator`, init)
 }
 
+#' @title An SIR model
+#' @export
+sir <- function(init, beta, gamma) {
+    .Call(`_testclasslinking_sir`, init, beta, gamma)
+}
+

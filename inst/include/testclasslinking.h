@@ -8,6 +8,7 @@
 
 #include "class.h"
 #include "ode.h"
+#include "models.h"
 
 #endif  // testclasslinking_testclasslinking_H_
 

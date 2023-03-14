@@ -68,6 +68,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// sir
+Rcpp::List sir(const Rcpp::NumericVector& init, const float& beta, const float& gamma);
+RcppExport SEXP _testclasslinking_sir(SEXP initSEXP, SEXP betaSEXP, SEXP gammaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type init(initSEXP);
+    Rcpp::traits::input_parameter< const float& >::type beta(betaSEXP);
+    Rcpp::traits::input_parameter< const float& >::type gamma(gammaSEXP);
+    rcpp_result_gen = Rcpp::wrap(sir(init, beta, gamma));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 RcppExport SEXP run_testthat_tests(SEXP);
 
@@ -77,6 +90,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_testclasslinking_get_numbers_func", (DL_FUNC) &_testclasslinking_get_numbers_func, 1},
     {"_testclasslinking_get_double_matrix", (DL_FUNC) &_testclasslinking_get_double_matrix, 1},
     {"_testclasslinking_harmonic_oscillator", (DL_FUNC) &_testclasslinking_harmonic_oscillator, 1},
+    {"_testclasslinking_sir", (DL_FUNC) &_testclasslinking_sir, 3},
     {"run_testthat_tests", (DL_FUNC) &run_testthat_tests, 1},
     {NULL, NULL, 0}
 };
