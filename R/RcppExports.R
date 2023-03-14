@@ -17,3 +17,9 @@ get_double_matrix <- function(list) {
     .Call(`_testclasslinking_get_double_matrix`, list)
 }
 
+#' @title Some odeint function
+#' @export
+harmonic_oscillator <- function(init) {
+    .Call(`_testclasslinking_harmonic_oscillator`, init)
+}
+

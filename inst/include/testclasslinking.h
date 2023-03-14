@@ -7,6 +7,7 @@
 #include <Rcpp.h>
 
 #include "class.h"
+#include "ode.h"
 
 #endif  // testclasslinking_testclasslinking_H_
 
